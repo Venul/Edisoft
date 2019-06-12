@@ -9,12 +9,14 @@ function getFullObjectImpl() {
 function getObjectPropertyImpl(obj) {
     let result = this.params;
     let propArray = obj.split('.');
+
     if (propArray.length >= 0) {
         for (var i = 0; i < propArray.length; i++) {
             if (result === undefined) break;
             result = result[propArray[i]];
         }
     }
+
     return result === undefined ? null : result;
 }
 
@@ -22,6 +24,7 @@ function setObjectPropertyImpl(propPath, value) {
     let result = this.params;
     let propArray = propPath.split('.');
     let propLen = propArray.length;
+
     for (let i = 0; i < propLen - 1; i++) {
         let elem = propArray[i];
         if (!result[elem]) {
@@ -34,6 +37,7 @@ function setObjectPropertyImpl(propPath, value) {
         result = result[elem];
     }
     result[propArray[propLen - 1]] = value;
+
     return result[propArray[propLen - 1]];
 }
 
@@ -52,7 +56,6 @@ function convertObjectToArrayImpl(obj) {
         result.push(newObj);
         newObj = {};
     }
-
     params.setObjectProperty(obj, result);
 
     return result === undefined ? null : result;
