@@ -3,7 +3,7 @@ function FormParamsObject(params) {
 }
 
 function getFullObjectImpl() {
-    return JSON.stringify(this, null, 4);
+    return JSON.stringify(this.params, null, 4);
 }
 
 function getObjectPropertyImpl(obj) {
